@@ -1,0 +1,59 @@
+# 3D Reconstruction Comparison Configuration
+
+# Hardware Configuration
+gpu_memory_limit: 5  # GB - adjust based on your GPU (RTX 3060 Mobile = 8GB)
+num_parallel_jobs: 1  # Number of scenes to process in parallel
+cpu_threads: 6  # Number of CPU threads for COLMAP
+
+# Training Configuration
+max_iterations: 30000
+nerf_test_iterations: [7000, 15000, 30000]
+gs_test_iterations: [7000, 30000]
+train_test_split: 0.8  # 80% training, 20% testing
+
+# Evaluation Configuration
+inference_frames: 50  # Number of frames for timing inference
+target_resolution: "1080p"
+image_downsample_factor: 1  # 1=original, 2=half, 4=quarter resolution
+
+# Methods to compare
+methods:
+  nerf:
+    enabled: true
+    method_name: "nerfacto"
+    extra_args: ["--viewer.quit-on-train-completion", "True"]
+  
+  gaussian_splatting:
+    enabled: true
+    use_antialiasing: false
+    use_depth_regularization: false
+    optimizer_type: "default"  # "default" or "sparse_adam"
+
+# COLMAP Configuration
+colmap:
+  feature_extractor:
+    single_camera: true
+    camera_model: "OPENCV"
+  matcher:
+    type: "exhaustive"  # "exhaustive" or "sequential"
+  mapper:
+    multiple_models: false
+
+# Output Configuration
+output:
+  save_rendered_images: true
+  save_timing_logs: true
+  generate_comparison_plots: true
+  save_intermediate_results: true
+  
+# Scene filtering (optional)
+scene_filters:
+  min_images: 10  # Minimum number of images required
+  max_images: 200  # Maximum number of images to process
+  image_extensions: [".jpg", ".jpeg", ".png", ".JPG", ".JPEG", ".PNG"]
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  save_to_file: true
+  console_output: true

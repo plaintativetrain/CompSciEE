@@ -1,0 +1,42 @@
+# 3D Reconstruction Comparison: Requirements
+# Core dependencies for the experiment pipeline
+
+# Machine Learning and Computer Vision
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.21.0
+opencv-python>=4.5.0
+Pillow>=8.0.0
+
+# Data Processing and Analysis
+pandas>=1.3.0
+matplotlib>=3.5.0
+seaborn>=0.11.0
+scipy>=1.7.0
+
+# System and Process Monitoring
+psutil>=5.8.0
+tqdm>=4.62.0
+
+# Configuration and Logging
+pyyaml>=6.0
+argparse
+pathlib
+json
+logging
+
+# Additional utilities
+requests>=2.25.0
+urllib3>=1.26.0
+
+# Optional: For advanced plotting and visualization
+plotly>=5.0.0
+dash>=2.0.0
+
+# Notes:
+# 1. Nerfstudio needs to be installed separately:
+#    pip install nerfstudio
+# 2. COLMAP needs to be installed separately (binary or conda)
+# 3. Gaussian Splatting repo needs to be cloned:
+#    git clone https://github.com/graphdeco-inria/gaussian-splatting.git
+# 4. GPU support requires appropriate CUDA toolkit installation
